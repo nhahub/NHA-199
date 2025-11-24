@@ -98,7 +98,7 @@ public class CartTest extends BaseAbstract {
     //2nd Test Case Remove Product from Cart
 //    @Test
 //    public void removeProductFromCart(){
-    //Login with standard_user
+    //Login with standarduser
 //        bot.navigateTo(URL);
 //        bot.type(userNameLocator,userName);
 //        bot.type(passwordLocator,password);

@@ -26,7 +26,7 @@ public class Bot {
                 .ignoring(ElementNotInteractableException.class);
 
     }
-    // methods
+    // methods.
     public void navigateTo(String url){
 
         driver.navigate().to(url);
