@@ -1,4 +1,4 @@
-package bot.pattern.pages;
+package POMpatternPages;
 
 public class CheckOutPage {
 }
