@@ -36,7 +36,7 @@ public class Bot {
     public String displayedText(By locator) {
         return wait.until(d -> d.findElement(locator).getText());
     }
-    public Boolean checkVisibility (By locator) {
+    public boolean checkVisibility (By locator) {
         return wait.until(d -> d.findElement(locator).isDisplayed());
     }
     public String currentURL() {
