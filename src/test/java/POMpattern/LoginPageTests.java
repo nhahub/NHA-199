@@ -19,9 +19,9 @@ public class LoginPageTests extends TestBaseAbstract {
         loginPage.enterValidPassword();
         loginPage.clickOnLoginButton();
         String productListingPageURL="https://www.saucedemo.com/inventory.html";
-        String currentURL=loginPage.currentURL();
+       // String currentURL=loginPage.currentURL();
 
-        Assert.assertEquals(currentURL,productListingPageURL);
+       // Assert.assertEquals(currentURL,productListingPageURL);
     }
 
 

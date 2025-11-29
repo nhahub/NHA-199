@@ -45,6 +45,7 @@ public class CartPage {
     By continueShoppingLocator = By.id("continue-shopping");
     By checkoutLocator = By.id("checkout");
     By sauceLabsBoltTshirt = By.id("add-to-cart-sauce-labs-bolt-t-shirt");
+    By sauceLabBoltTshirtTitleLocator = By.xpath("//a[@id='item_1_title_link']//div[@class='inventory_item_name']");
     By emptyCartIcontLocator = By.xpath("//a[@class='shopping_cart_link']");
     By removeButtonLocator = By.id("remove-sauce-labs-bolt-t-shirt");
     By titleofBoltTshirtLocator = By.xpath("//div[@class='inventory_item_name']");
@@ -109,6 +110,21 @@ public class CartPage {
     }
     public boolean continueShoppingVisibility(){
         return cartBot.checkVisibility(continueShoppingLocator);
+    }
+    public void addSauceLabsBoltTShirtTocCart(){
+        cartBot.click(sauceLabsBoltTshirt);
+    }
+    public void navigateToCartPage(){
+        cartBot.click(cartIconLocator);
+    }
+    public boolean verifyBoltTShirtIsInCart(){
+        return cartBot.displayedText(sauceLabBoltTshirtTitleLocator).contains("Bolt T-Shirt");
+    }
+    public void clickRemoveButton(){
+        cartBot.click(removeButtonLocator);
+    }
+    public boolean verifyBoltTShirtRemovedandCartPadgeUpdate(){
+        return cartBot.checkVisibility(removedCartItem);
     }
 
 

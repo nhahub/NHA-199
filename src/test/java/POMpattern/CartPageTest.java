@@ -28,4 +28,18 @@ public class CartPageTest extends TestBaseAbstract{
         Assert.assertTrue(cart.continueShoppingVisibility());
 
     }
+    @Test
+    public void removeProductFromCart(){
+        CartPage cart = new CartPage(bot);
+        cart.navigateToLoginPage();
+        cart.enterUserNAme();
+        cart.enterPassword();
+        cart.clickLoginButton();
+        cart.addSauceLabsBoltTShirtTocCart();
+        cart.navigateToCartPage();
+        cart.verifyBoltTShirtIsInCart();
+        cart.clickRemoveButton();
+        Assert.assertTrue(cart.verifyBoltTShirtRemovedandCartPadgeUpdate());
+
+    }
 }
