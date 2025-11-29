@@ -28,7 +28,7 @@ public class CartPage {
 
     //Backpack item locator
     By sauceLabsBackpackLocator = By.id("add-to-cart-sauce-labs-backpack");
-    By backPackTitleLocator = By.xpath("(//a[@id='item_4_title_link']//div[@class='inventory_item_name']");
+    By backPackTitleLocator = By.xpath("//a[@id='item_4_title_link']//div[@class='inventory_item_name']");
     By backPackDescLocator = By.xpath("(//div[@class='inventory_item_desc'])[1]");
     By backPackPriceLocator = By.xpath("(//div[@class='inventory_item_price'])[1]");
 
@@ -84,7 +84,8 @@ public class CartPage {
         return cartBot.displayedText(numofItemsonCartLocator).contains(expectedNumofItems);
     }
     public boolean checkBackpackTitle(){
-        return cartBot.displayedText(backPackTitleLocator).contains("BikeLight");
+        // verify the backpack title text matches expected value
+        return cartBot.displayedText(backPackTitleLocator).contains(expectedBackPackTitle);
     }
     public boolean checkBackpackDesc(){
         return cartBot.displayedText(backPackDescLocator).contains(expectedBackPackDesc);
@@ -94,7 +95,8 @@ public class CartPage {
     }
 
     public boolean checkBikeLightTitle(){
-        return cartBot.displayedText(bikeLightTitleLocator).contains(expectedBackPackTitle);
+        // verify the bike light title text matches expected value
+        return cartBot.displayedText(bikeLightTitleLocator).contains(expectedBikeLighTitle);
     }
     public boolean checkBikeLightDesc(){
         return cartBot.displayedText(bikeLightDescLocator).contains(expectedBikeLighDesc);

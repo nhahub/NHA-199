@@ -1,5 +1,6 @@
 package POMpatternPages;
 
+import engine.Bot;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
@@ -20,5 +21,9 @@ public class CheckOutPage {
     String firstname = "Ahmed";
     String lastName = "Abu-Madawy";
     int zipCode = 4331;
+    Bot bot;
+    public CheckOutPage(Bot bot) {
+        this.bot = bot;
+    }
 }
 
