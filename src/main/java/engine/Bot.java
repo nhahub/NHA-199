@@ -9,13 +9,13 @@ import org.openqa.selenium.support.ui.Wait;
 import java.time.Duration;
 
 public class Bot {
-    //ChromeOptions options ; // chrome options gave me an error in excution fix it later
+    ChromeOptions options ;
     WebDriver driver;
     Wait<WebDriver> wait;
 
     public Bot() {
-        //options = new ChromeOptions().addArguments(" -- start-maximized").addArguments(" -- incognito");
-        driver = new ChromeDriver();
+        options = new ChromeOptions().addArguments(" -- start-maximized").addArguments(" -- incognito");
+        driver = new ChromeDriver(options);
         wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(2))
                 .pollingEvery(Duration.ofMillis(300))
@@ -42,20 +42,20 @@ public class Bot {
         });
         System.out.println("Typed "+ text+ " into element: " + locator.toString());
     }
-    public String getText(By locator) {
-        return driver.findElement(locator).getText();
-    }
-    public String currentURL() {
-        return wait.until((d)->
-        {
-            return d.getCurrentUrl();
+    public String displayedText(By locator) {
+        return wait.until(d->{
+            return d.findElement(locator).getText();
         });
     }
     public Boolean checkVisibility (By locator) {
-        return driver.findElement(locator).isDisplayed();
+        return wait.until(d->{
+            return d.findElement(locator).isDisplayed();
+        });
+
     }
     public void quit() {
         driver.quit();
         System.out.println("Bot quit and driver closed.");
     }
 }
+

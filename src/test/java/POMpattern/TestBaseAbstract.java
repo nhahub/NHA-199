@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeMethod;
 
 
 
-public class TestBaseAbstract {
+public abstract class TestBaseAbstract {
     Bot bot;
 
     @BeforeMethod
