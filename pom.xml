@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>example.orgt</groupId>
     <artifactId>NHA-199</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -26,6 +26,12 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.11.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.4.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
