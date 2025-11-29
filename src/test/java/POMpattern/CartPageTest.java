@@ -1,6 +1,7 @@
 package POMpattern;
 
 import POMpatternPages.CartPage;
+import POMpatternPages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,10 +10,8 @@ public class CartPageTest extends TestBaseAbstract{
     @Test
     public void viewCartWithAddedProducts(){
         CartPage cart = new CartPage(bot);
-        cart.navigateToLoginPage();
-        cart.enterUserNAme();
-        cart.enterPassword();
-        cart.clickLoginButton();
+        LoginPage loginPage=new LoginPage(bot); // Instantiate LoginPage
+        loginPage.navigateToLoginWithValidCredentials(); // Use method to login with valid credentials
         cart.addSauceLabsBackpackToCart();
         cart.addSauceLabsBikeLightToCart();
         cart.clickOnCartIcon();
@@ -31,10 +30,8 @@ public class CartPageTest extends TestBaseAbstract{
     @Test
     public void removeProductFromCart(){
         CartPage cart = new CartPage(bot);
-        cart.navigateToLoginPage();
-        cart.enterUserNAme();
-        cart.enterPassword();
-        cart.clickLoginButton();
+        LoginPage loginPage=new LoginPage(bot); // Instantiate LoginPage
+        loginPage.navigateToLoginWithValidCredentials(); // Use method to login with valid cred
         cart.addSauceLabsBoltTShirtTocCart();
         cart.navigateToCartPage();
         cart.verifyBoltTShirtIsInCart();
