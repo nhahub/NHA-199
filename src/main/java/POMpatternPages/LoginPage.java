@@ -68,12 +68,5 @@ public class LoginPage {
     }
     public void navigateToandLoginWithValidCredentials() {
         login(loginPageURL,validUserName, validPassword);
+    }
 }
-}
-
-
-
-
-
-
-

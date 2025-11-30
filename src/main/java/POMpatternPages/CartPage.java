@@ -2,6 +2,7 @@ package POMpatternPages;
 
 import engine.Bot;
 import org.openqa.selenium.By;
+import static POMpatternPages.LoginPage.*;
 
 public class CartPage {
     // variables initialization
@@ -21,7 +22,7 @@ public class CartPage {
     String expectedNumofProduct1 = "1";
 
     //Locators
-    //Login Locators
+    //Login Locators remove
     By userNameLocator = By.id("user-name");
     By passwordLocator = By.id("password");
     By loginButtonLocator = By.id("login-button");
@@ -57,6 +58,7 @@ public class CartPage {
     public CartPage(Bot bot){
         cartBot = bot;
     }
+    // TODO: Edit this to invoke login page methods instead of repeating code
     public void navigateToLoginPage(){
         cartBot.navigateTo(URL);
     }
@@ -136,5 +138,9 @@ public class CartPage {
         return cartBot.getText(numofItemsonCartLocator).contains("1");
     }
 
+    // Method to click checkout from the cart page
+    public void clickCheckoutButton(){
+        cartBot.click(checkoutLocator);
+    }
 
 }

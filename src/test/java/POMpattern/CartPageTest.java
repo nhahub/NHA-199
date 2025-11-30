@@ -4,6 +4,7 @@ import POMpatternPages.CartPage;
 import POMpatternPages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import static POMpatternPages.LoginPage.*;
 
 public class CartPageTest extends TestBaseAbstract{
 
@@ -11,11 +12,12 @@ public class CartPageTest extends TestBaseAbstract{
     public void viewCartWithAddedProducts(){
         CartPage cart = new CartPage(bot);
         LoginPage loginPage=new LoginPage(bot); // Instantiate LoginPage
-        loginPage.navigateToandLoginWithValidCredentials(); // Use method to login with valid credentials
+        loginPage.navigateToandLoginWithValidCredentials();// Use method to login with valid credentials
         cart.addSauceLabsBackpackToCart();
         cart.addSauceLabsBikeLightToCart();
         cart.clickOnCartIcon();
-        Assert.assertTrue(cart.checkCartPAgeLanding());
+        //TODO: Add assertions to verify cart page elements
+        Assert.assertTrue(cart.checkCartPAgeLanding(), "Cart page did not load correctly.");
         Assert.assertTrue(cart.checkThatTwoElementsInCart());
         Assert.assertTrue(cart.checkBackpackTitle());
         Assert.assertTrue(cart.checkBackpackDesc());
@@ -31,7 +33,7 @@ public class CartPageTest extends TestBaseAbstract{
     public void removeProductFromCart(){
         CartPage cart = new CartPage(bot);
         LoginPage loginPage=new LoginPage(bot); // Instantiate LoginPage
-        loginPage.navigateToandLoginWithValidCredentials(); // Use method to login with valid cred
+        loginPage.navigateToandLoginWithValidCredentials(); // Use method to login with valid credentials
         cart.addSauceLabsBoltTShirtTocCart();
         cart.navigateToCartPage();
         Assert.assertTrue(cart.verifyBoltTShirtIsInCart());
@@ -42,7 +44,7 @@ public class CartPageTest extends TestBaseAbstract{
     public void continueShoppingFromCart(){
         CartPage cart = new CartPage(bot);
         LoginPage loginPage=new LoginPage(bot);
-        loginPage.navigateToandLoginWithValidCredentials();
+        loginPage.navigateToandLoginWithValidCredentials(); // Use method to login with valid credentials
         cart.addSauceLabsBackpackToCart();
         cart.clickOnCartIcon();
         cart.clickOnContinueShoppingButton();
