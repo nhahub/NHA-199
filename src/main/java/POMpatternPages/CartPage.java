@@ -124,7 +124,7 @@ public class CartPage {
         cartBot.click(removeButtonLocator);
     }
     public boolean verifyBoltTShirtRemovedandCartPadgeUpdate(){
-        return cartBot.checkVisibility(removedCartItem);
+        return cartBot.checkItemRemoved(removedCartItem);
     }
     public void clickOnContinueShoppingButton(){
         cartBot.click(continueShoppingLocator);

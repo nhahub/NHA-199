@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import java.time.Duration;
 
+
+
 public class Bot {
     WebDriver driver;
     Wait<WebDriver> wait;
@@ -46,6 +48,11 @@ public class Bot {
     }
     public String getText(By locator) {
         return driver.findElement(locator).getText();
+    }
+    // this method used for catch an element exist in the DOM but not visible
+    // use findElements will returns an empty list if not found
+    public boolean checkItemRemoved(By locator){
+        return wait.until(d-> !d.findElements(locator).isEmpty());
     }
     public void quit() {
         driver.quit();
