@@ -1,6 +1,7 @@
 package engine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -18,6 +19,7 @@ public class Bot {
         wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofMillis(500))
+                .ignoring(NoSuchElementException.class)
                 .ignoring(ElementNotInteractableException.class);
     }
 

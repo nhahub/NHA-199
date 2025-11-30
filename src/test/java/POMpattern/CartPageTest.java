@@ -11,7 +11,7 @@ public class CartPageTest extends TestBaseAbstract{
     public void viewCartWithAddedProducts(){
         CartPage cart = new CartPage(bot);
         LoginPage loginPage=new LoginPage(bot); // Instantiate LoginPage
-        loginPage.navigateToLoginWithValidCredentials(); // Use method to login with valid credentials
+        loginPage.navigateToandLoginWithValidCredentials(); // Use method to login with valid credentials
         cart.addSauceLabsBackpackToCart();
         cart.addSauceLabsBikeLightToCart();
         cart.clickOnCartIcon();
@@ -31,12 +31,22 @@ public class CartPageTest extends TestBaseAbstract{
     public void removeProductFromCart(){
         CartPage cart = new CartPage(bot);
         LoginPage loginPage=new LoginPage(bot); // Instantiate LoginPage
-        loginPage.navigateToLoginWithValidCredentials(); // Use method to login with valid cred
+        loginPage.navigateToandLoginWithValidCredentials(); // Use method to login with valid cred
         cart.addSauceLabsBoltTShirtTocCart();
         cart.navigateToCartPage();
-        cart.verifyBoltTShirtIsInCart();
+        Assert.assertTrue(cart.verifyBoltTShirtIsInCart());
         cart.clickRemoveButton();
         Assert.assertTrue(cart.verifyBoltTShirtRemovedandCartPadgeUpdate());
-
+    }
+    @Test
+    public void continueShoppingFromCart(){
+        CartPage cart = new CartPage(bot);
+        LoginPage loginPage=new LoginPage(bot);
+        loginPage.navigateToandLoginWithValidCredentials();
+        cart.addSauceLabsBackpackToCart();
+        cart.clickOnCartIcon();
+        cart.clickOnContinueShoppingButton();
+        Assert.assertTrue(cart.verifyUserRedirectedToInventoryPage());
+        Assert.assertTrue(cart.VerifyCartBadgeStillShowsAddedProductCount());
     }
 }

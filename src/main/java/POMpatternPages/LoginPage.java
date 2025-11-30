@@ -63,12 +63,13 @@ public class LoginPage {
         return loginbot.getText(errorMessageLocator);
     }
     // New method to perform login with given credentials
-    public void login(String validUserName, String validPassword) {
+    public void login(String loginURL,String validUserName, String validPassword) {
+        loginbot.navigateTo(loginURL);
         loginbot.type(usernameFieldLocator, validUserName);
         loginbot.type(passwordFieldLocator, validPassword);
         loginbot.click(loginButtonLocator);
     }
-    public void navigateToLoginWithValidCredentials() {
-        login("standard_user", "secret_sauce");
+    public void navigateToandLoginWithValidCredentials() {
+        login(loginPageURL,validUserName, validPassword);
     }
 }

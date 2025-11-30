@@ -126,6 +126,15 @@ public class CartPage {
     public boolean verifyBoltTShirtRemovedandCartPadgeUpdate(){
         return cartBot.checkVisibility(removedCartItem);
     }
+    public void clickOnContinueShoppingButton(){
+        cartBot.click(continueShoppingLocator);
+    }
+    public boolean verifyUserRedirectedToInventoryPage(){
+        return cartBot.getText(inventoryPageTitle).contains("Products");
+    }
+    public boolean VerifyCartBadgeStillShowsAddedProductCount(){
+        return cartBot.getText(numofItemsonCartLocator).contains("1");
+    }
 
 
 }
