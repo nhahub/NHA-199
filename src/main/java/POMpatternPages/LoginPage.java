@@ -1,75 +1,82 @@
 package POMpatternPages;
-
 import engine.Bot;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
-    //  Locators
-    By usernameFieldLocator = By.xpath("//input[@id='user-name']");
-    By passwordFieldLocator = By.xpath("//input[@id='password']");
-    By loginButtonLocator = By.xpath("//input[@id='login-button']");
-    By errorMessageLocator = By.xpath("//h3[@data-test='error']");
-    // Variables
-    String loginPageURL = "https://www.saucedemo.com/";
-    String validUserName = "standard_user";
-    String validPassword = "secret_sauce";
-    String invalidUserName = "Test_Name";
-    String invalidPassword = "Test_Password";
+    //Locators and variable
 
-    // bot instance
-    Bot loginbot;
+    By usernameFieldLocator = By.xpath("//input[@placeholder='Username']");
+     By passwordFieldLocator = By.xpath("//input[@placeholder='Password']");
+      By loginButtonLocator =By.xpath("//input[@type='submit']");
+       By logoText = By.xpath("//div[@class='login_logo']");
+        By errorMessageLocator = By.xpath("//h3[@data-test='error']");
+         By menuLocator = By.xpath("//button[@id='react-burger-menu-btn']");
+          By logoutLocator = By.xpath("//a[@id='logout_sidebar_link']");
+            public static String loginPageURL ="https://www.saucedemo.com/";
+             public static String validUserName = "standard_user";
+            public static String validPassword = "secret_sauce";
+          public static String invalidUserName = "invalid_user" ;
+         public static String invalidPassword = "wrong_password";
+        public static String expectedHeaderText = "Swag Labs";
+       public static String expectedErrorMessage ="Epic sadface: Username and password do not match any user in this service";
+      public static String lockedUserName ="locked_out_user";
+     public static String lockedPassword ="secret_sauce";
+    public static String expectedLockedErrorMessage ="Epic sadface: Sorry, this user has been locked out.";
+  public static String homePageURL ="https://www.saucedemo.com/inventory.html";
 
-    public LoginPage(Bot bot) {
-        this.loginbot = bot;
+    Bot loginBot;
+
+    public LoginPage(Bot bot){
+       this.loginBot = bot;
+    }
+    //constructor
+    public void LoginPage(WebDriver driver){
     }
 
-    // Constructor method
-    public LoginPage(WebDriver driver) {
-
+    //Method to interact with the page
+    public void navigateToLoginPage(){
+        loginBot.navigateTo(loginPageURL);
+    }
+    public void enterUserName(String username){
+        loginBot.type(usernameFieldLocator,username);
     }
 
-    public void navigateToLoginPage() {
-        loginbot.navigateTo(loginPageURL);
+    public void enterPassword(String password){
+        loginBot.type(passwordFieldLocator,password);
     }
 
-    public void enterValidUserName() {
-        loginbot.type(usernameFieldLocator, validUserName);
+    public void clickOnLoginButton(){
+        loginBot.click(loginButtonLocator);
     }
 
-    public void enterValidPassword() {
-        loginbot.type(passwordFieldLocator, validPassword);
-
+    public String verifyLogo(){
+        return loginBot.getText(logoText);
     }
 
-    public void enterInvalidUserName() {
-        loginbot.type(usernameFieldLocator, invalidUserName);
+    public String ErrorMsgText(){
+        return loginBot.getText(errorMessageLocator);
+    }
+    public void logoutSuccessfully(){
+        loginBot.click(menuLocator);
+        loginBot.click(logoutLocator);
     }
 
-    public void enterInvalidPassword() {
-        loginbot.type(passwordFieldLocator, invalidPassword);
+    public void login(String validUserName, String validPassword) {
+        loginBot.type(usernameFieldLocator, validUserName);
+        loginBot.type(passwordFieldLocator, validPassword);
+        loginBot.click(loginButtonLocator);
+    }
+    public void navigateToLoginWithValidCredentials() {
+        login("standard_user", "secret_sauce");
     }
 
-    public void clickOnLoginButton() {
-        loginbot.click(loginButtonLocator);
-    }
 
-    public String currentURL() {
-        return loginbot.currentURL();
-    }
-
-    public String ErrorMsgText() {
-
-        return loginbot.getText(errorMessageLocator);
-    }
-    // New method to perform login with given credentials
-    public void login(String loginURL,String validUserName, String validPassword) {
-        loginbot.navigateTo(loginURL);
-        loginbot.type(usernameFieldLocator, validUserName);
-        loginbot.type(passwordFieldLocator, validPassword);
-        loginbot.click(loginButtonLocator);
-    }
-    public void navigateToandLoginWithValidCredentials() {
-        login(loginPageURL,validUserName, validPassword);
-    }
 }
+
+
+
+
+
+
+

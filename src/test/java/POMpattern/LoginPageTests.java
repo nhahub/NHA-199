@@ -1,68 +1,51 @@
 package POMpattern;
-
 import POMpatternPages.LoginPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginPageTests extends TestBaseAbstract {
+import static POMpatternPages.LoginPage.*;
 
+
+public class LoginPageTests extends TestBaseAbstract{
     @Test
-    public void successfulLogin()
-    {
-
-        //LoginPage loginPage=new LoginPage(driver,wait,options);
-        LoginPage loginPage=new LoginPage(bot);
+    public void successfulLogin(){
+        LoginPage loginPage = new LoginPage(bot);
         loginPage.navigateToLoginPage();
-        loginPage.enterValidUserName();
-        loginPage.enterValidPassword();
+        String actualHeaderText = loginPage.verifyLogo();
+        Assert.assertEquals(actualHeaderText,expectedHeaderText);
+        loginPage.enterUserName(validUserName);
+        loginPage.enterPassword(validPassword);
         loginPage.clickOnLoginButton();
-        String productListingPageURL="https://www.saucedemo.com/inventory.html";
-        String currentURL=loginPage.currentURL();
-
-        Assert.assertEquals(currentURL,productListingPageURL);
-    }
-
-
-
-    @Test
-    public void unsuccessfulLogin_BothFieldsEmpty()
-    {
-        LoginPage loginPage=new LoginPage(bot);
-        loginPage.navigateToLoginPage();
-        loginPage.clickOnLoginButton();
-        String actual= loginPage.ErrorMsgText();
-        Assert.assertTrue(actual.contains("Username is required"));
-
+        Assert.assertNotEquals(loginPageURL,homePageURL);
+        loginPage.logoutSuccessfully();
 
     }
-
     @Test
-    public void unsuccessfulLogin_OnlyPasswordFieldEmpty()
-    {
-        LoginPage loginPage=new LoginPage(bot);
+    public void  unsuccessfulLogin() {
+        LoginPage loginPage = new LoginPage(bot);
         loginPage.navigateToLoginPage();
-        loginPage.enterInvalidUserName();
+        String actualHeaderText = loginPage.verifyLogo();
+        Assert.assertEquals(actualHeaderText,expectedHeaderText);
+        loginPage.enterUserName(invalidUserName);
+        loginPage.enterPassword(invalidPassword);
         loginPage.clickOnLoginButton();
-
-        Assert.assertTrue(loginPage.ErrorMsgText().contains("Password is required"));
-
-
+        String actualErrorMessage = loginPage.ErrorMsgText();
+        Assert.assertEquals(actualErrorMessage,expectedErrorMessage);
     }
-
     @Test
-    public void unsuccessfulLogin_InvalidCredentials()
-    {
-        LoginPage loginPage=new LoginPage(bot);
+    public void  loginWithLockedOutUser(){
+        LoginPage loginPage = new LoginPage(bot);
         loginPage.navigateToLoginPage();
-        loginPage.enterInvalidUserName();
-        loginPage.enterInvalidPassword();
+        String actualHeaderText = loginPage.verifyLogo();
+        String expectedHeaderText = "Swag Labs";
+        Assert.assertEquals(actualHeaderText,expectedHeaderText);
+        loginPage.enterUserName(lockedUserName);
+        loginPage.enterPassword(lockedPassword);
         loginPage.clickOnLoginButton();
-
-        Assert.assertTrue(loginPage.ErrorMsgText().contains("do not match"));
-
-
+        String actualErrorMesssage = loginPage.ErrorMsgText();
+        Assert.assertEquals(actualErrorMesssage,expectedLockedErrorMessage);
     }
 
 }
+
+
