@@ -59,6 +59,7 @@ public class Bot {
 
     public void type(By locator, String text) {
         wait.until(d -> {
+            d.findElement(locator).click();
             d.findElement(locator).clear();
             d.findElement(locator).sendKeys(text);
             return true;
@@ -81,10 +82,11 @@ public class Bot {
     public String getText(By locator) {
         return driver.findElement(locator).getText();
     }
+
     // this method used for catch an element exist in the DOM but not visible
     // use findElements will returns an empty list if not found
-    public boolean checkItemRemoved(By locator){
-        return wait.until(d-> !d.findElements(locator).isEmpty());
+    public boolean checkItemRemoved(By locator) {
+        return wait.until(d -> !d.findElements(locator).isEmpty());
     }
 
     public void quit() {
