@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -16,8 +18,8 @@ import java.util.Map;
 
 
 public class Bot {
-    WebDriver driver;
-    Wait<WebDriver> wait;
+   WebDriver driver;
+   Wait<WebDriver> wait;
 
     public Bot() {
         ChromeOptions options = new ChromeOptions(); // added chrome options to disable password manager
@@ -59,7 +61,6 @@ public class Bot {
 
     public void type(By locator, String text) {
         wait.until(d -> {
-            d.findElement(locator).click();
             d.findElement(locator).clear();
             d.findElement(locator).sendKeys(text);
             return true;
@@ -82,15 +83,20 @@ public class Bot {
     public String getText(By locator) {
         return driver.findElement(locator).getText();
     }
-
     // this method used for catch an element exist in the DOM but not visible
     // use findElements will returns an empty list if not found
-    public boolean checkItemRemoved(By locator) {
-        return wait.until(d -> !d.findElements(locator).isEmpty());
+    public boolean checkItemRemoved(By locator){
+        return wait.until(d-> !d.findElements(locator).isEmpty());
     }
 
     public void quit() {
         driver.quit();
         System.out.println("Bot quit and driver closed.");
+    }
+
+    public void selectByValue(By locator, String value) {
+        WebElement element = driver.findElement(locator);
+        Select dropdown = new Select(element);
+        dropdown.selectByValue(value);
     }
 }
