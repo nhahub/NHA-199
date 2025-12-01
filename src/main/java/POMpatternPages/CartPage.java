@@ -2,10 +2,14 @@ package POMpatternPages;
 
 import engine.Bot;
 import org.openqa.selenium.By;
+import static POMpatternPages.LoginPage.*;
 
 public class CartPage {
-
     // variables initialization
+
+    String URL = "https://www.saucedemo.com/";
+    String userName = "standard_user";
+    String password = "secret_sauce";
     String expectedTitle = "Your Cart";
     String expectedNumofItems = "2";
     String expectedBackPackTitle = "Sauce Labs Backpack";
@@ -18,6 +22,11 @@ public class CartPage {
     String expectedNumofProduct1 = "1";
 
     //Locators
+    //Login Locators remove
+    By userNameLocator = By.id("user-name");
+    By passwordLocator = By.id("password");
+    By loginButtonLocator = By.id("login-button");
+
     //Backpack item locator
     By sauceLabsBackpackLocator = By.id("add-to-cart-sauce-labs-backpack");
     By backPackTitleLocator = By.xpath("//a[@id='item_4_title_link']//div[@class='inventory_item_name']");
@@ -38,6 +47,7 @@ public class CartPage {
     By checkoutLocator = By.id("checkout");
     By sauceLabsBoltTshirt = By.id("add-to-cart-sauce-labs-bolt-t-shirt");
     By sauceLabBoltTshirtTitleLocator = By.xpath("//a[@id='item_1_title_link']//div[@class='inventory_item_name']");
+    By emptyCartIcontLocator = By.xpath("//a[@class='shopping_cart_link']");
     By removeButtonLocator = By.id("remove-sauce-labs-bolt-t-shirt");
     By titleofBoltTshirtLocator = By.xpath("//div[@class='inventory_item_name']");
     By removedCartItem = By.xpath("//div[@class='removed_cart_item']");
@@ -48,7 +58,19 @@ public class CartPage {
     public CartPage(Bot bot){
         cartBot = bot;
     }
-
+    // TODO: Edit this to invoke login page methods instead of repeating code
+    public void navigateToLoginPage(){
+        cartBot.navigateTo(URL);
+    }
+    public void enterUserNAme(){
+        cartBot.type(userNameLocator,userName);
+    }
+    public void enterPassword(){
+        cartBot.type(passwordLocator,password);
+    }
+    public void clickLoginButton(){
+        cartBot.click(loginButtonLocator);
+    }
     public void addSauceLabsBackpackToCart(){
         cartBot.click(sauceLabsBackpackLocator);
     }
@@ -110,14 +132,15 @@ public class CartPage {
         cartBot.click(continueShoppingLocator);
     }
     public boolean verifyUserRedirectedToInventoryPage(){
-        return cartBot.getText(inventoryPageTitle).contains(expectedInventoryPageTitle);
+        return cartBot.getText(inventoryPageTitle).contains("Products");
     }
     public boolean VerifyCartBadgeStillShowsAddedProductCount(){
-        return cartBot.getText(numofItemsonCartLocator).contains(expectedNumofProduct1);
+        return cartBot.getText(numofItemsonCartLocator).contains("1");
     }
+
+    // Method to click checkout from the cart page
     public void clickCheckoutButton(){
         cartBot.click(checkoutLocator);
     }
-
 
 }
