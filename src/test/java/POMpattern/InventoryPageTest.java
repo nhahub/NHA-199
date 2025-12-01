@@ -33,25 +33,7 @@ public class InventoryPageTest {
         assertTrue(inventoryPage.isInventoryPageVisible(), "Inventory Page is not visible");
     }
 
-//    @Test
-//    public void testInventoryPageTitle() {
-//        assertTrue(inventoryPage.verifyInventoryPageTitle(), "Inventory Page title mismatch");
-//    }
 
-//    @Test
-//    public void testAddFirstProductToCart() {
-//        // select the product
-//        String firstProductName = inventoryPage.getProductName(0);
-//
-//        // add to cart
-//        inventoryPage.addProductToCartByIndex(0);
-//
-//        // open the cart
-//        inventoryPage.openCart();
-//
-//        // check if the product at cart
-//        assertTrue(cartPage.VerifyCartBadgeStillShowsAddedProductCount(), "Product not added to cart");
-//    }
 
     @Test
     public void testLogout() {

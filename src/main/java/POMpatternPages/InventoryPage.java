@@ -1,4 +1,3 @@
-
 package POMpatternPages;
 
 import engine.Bot;
@@ -67,36 +66,6 @@ public class InventoryPage {
         return bot.getText(inventoryPageTitleLocator)
                 .contains(expectedInventoryPageTitle);
     }
-//
-//    // Sorting Dropdown
-//    public void sortProducts(String sortValue) {
-//        bot.selectByValue(sortDropdown, sortValue);
-//    }
-//
-//    // Add product by index
-//    public void addProductToCartByIndex(int index) {
-//        bot.click(addToCartButtonLocator);
-//    }
-//
-//    // Click product - open product page
-//    public void addBackpackToCart() {
-//        bot.click(addBackpack);
-//    }
-//
-//    // Get product name
-//    public String getBackpackName() {
-//        return bot.getText(backpackName);
-//    }
-//
-//    // Get product price by index
-//    public String getProductPrice(int index) {
-//        return bot.getText(ProductPriceLocator);
-//    }
-//
-//    // Check if specific product exists
-//    public boolean isProductDisplayed(String name) {
-//        return bot.checkVisibility(menuButton);
-//    }
 
 
     // Open Cart Page
