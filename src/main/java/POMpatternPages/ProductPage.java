@@ -4,62 +4,83 @@ import engine.Bot;
 import org.openqa.selenium.By;
 
 public class ProductPage {
-    private Bot bot;
+    Bot productBot;
 
-    // Locators
-    private final By productName = By.xpath("//div[@class='inventory_details_name']");
-    private final By productPrice = By.xpath("//div[@class='inventory_details_price']");
-    private final By productDescription = By.xpath("//div[@class='inventory_details_desc']");
-    private final By addToCartButton = By.xpath("//button[text()='Add to cart']");
-    private final By removeFromCartButton = By.xpath("//button[text()='Remove']");
-    private final By backToProductsButton = By.id("back-to-products");
-    private final By cartBadge = By.xpath("//span[@class='shopping_cart_badge']");
+    //Backpack item Locators
+    By backPackTitleLocator = By.xpath("//a[@id='item_4_title_link']");
+    By backPackNameLocator = By.xpath("//div[@class='inventory_details_name large_size']");
+    By backPackImageLocator = By.xpath("//img[@class='inventory_details_img']");
+    By backPackDesLocator = By.xpath("//div[@class='inventory_details_desc large_size']");
+    By backPackPriceLocator = By.xpath("//div[@class='inventory_details_price']");
+    By backPackAddtoCartButtonLocator = By.xpath("//button[@id='add-to-cart']");
+    //Bike light item Locators
+    By bikeLightItemLocator = By.xpath("//a[@id='item_0_title_link']");
+    By bikeLightAddtoCartLocator = By.xpath("//button[@id='add-to-cart']");
+    By bikeLightRemoveButtonLocator = By.xpath("//button[@id='remove']");
+    By cartPageLocator = By.xpath("//span[@class='shopping_cart_badge']");
+    By backtoProductsLocator = By.xpath("//button[@id='back-to-products']");
+    By inventoryPageTitle = By.xpath("//span[@class='title']");
+    By bikeLightPageTitle = By.xpath("//div[@class='inventory_details_name large_size']");
 
     // Constructor
     public ProductPage(Bot bot) {
-        this.bot = bot;
+
+        productBot = bot;
     }
 
-    // Check if Product Page is loaded
-    public boolean isProductPageVisible() {
-        return bot.checkVisibility(productName);
+    public void clickonBackpackProductTitle() {
+        productBot.click(backPackTitleLocator);
     }
 
-    // Get Product Name
-    public String getProductName() {
-        return bot.getText(productName);
+    public boolean verifyUserRedirecttoBackPackProductPage() {
+        return productBot.getText(backPackNameLocator).contains("Backpack");
     }
 
-    // Get Product Price
-    public String getProductPrice() {
-        return bot.getText(productPrice);
+    public boolean verifyBackpackProductImageDisplayed() {
+        return productBot.checkVisibility(backPackImageLocator);
     }
 
-    // Get Product Description
-    public String getProductDescription() {
-        return bot.getText(productDescription);
+    public boolean verifyProductName() {
+        return productBot.getText(backPackNameLocator).contains("Labs Backpack");
     }
 
-    // Add Product to Cart
-    public void addToCart() {
-        bot.click(addToCartButton);
+    public boolean verifyBackpackDescDisplayed() {
+        return productBot.checkVisibility(backPackDesLocator);
     }
 
-    // Remove Product from Cart
-    public void removeFromCart() {
-        bot.click(removeFromCartButton);
+    public boolean verifyBackpackPriceDisplayed() {
+        return productBot.checkVisibility(backPackPriceLocator);
     }
 
-    // Get Cart Badge Count
-    public String getCartBadgeCount() {
-        if (bot.checkVisibility(cartBadge)) {
-            return bot.getText(cartBadge);
-        }
-        return "1";
+    public boolean verifyAddtoCartButtonDisplayed() {
+        return productBot.checkVisibility(backPackAddtoCartButtonLocator);
     }
 
-    // Go Back to Products (Inventory Page)
-    public void backToProducts() {
-        bot.click(backToProductsButton);
+    public void navigatetoBikeLightProductPage() {
+        productBot.click(bikeLightItemLocator);
+    }
+
+    public void clickonBikeLightAddtoCartButton() {
+        productBot.click(bikeLightAddtoCartLocator);
+    }
+
+    public boolean verifyButtonTextChangestoRemove() {
+        return productBot.getText(bikeLightRemoveButtonLocator).contains("Remove");
+    }
+
+    public boolean verifyCartBadgeDisplays1() {
+        return productBot.getText(cartPageLocator).contains("1");
+    }
+
+    public void clickBacktoProductsButton() {
+        productBot.click(backtoProductsLocator);
+    }
+
+    public boolean verifyUserReturnstoInventoryPage() {
+        return productBot.getText(inventoryPageTitle).contains("Products");
+    }
+
+    public boolean verifyBikeLightpageisdisplayed() {
+        return productBot.getText(bikeLightPageTitle).contains("Bike Light");
     }
 }

@@ -1,6 +1,7 @@
 package POMpattern;
 
 import POMpatternPages.InventoryPage;
+import POMpatternPages.LoginPage;
 import POMpatternPages.ProductPage;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -18,58 +19,44 @@ public class ProductTest extends TestBaseAbstract {
         bot.click(By.id("login-button"));
     }
 
-//    @Test
-//    public void testProductPageLoads() {
-//        login();
-//        inventoryPage = new InventoryPage(bot);
-//        // Click on a product name to navigate to Product Page (e.g., Backpack)
-//        bot.click(By.id("item_4_title_link")); // Locator for Backpack name
-//        productPage = new ProductPage(bot);
-//        Assert.assertTrue(productPage.isProductPageVisible(), "Product page should be displayed");
-//        Assert.assertEquals(productPage.getProductName(), "Sauce Labs Backpack", "Product name should match");
-//    }
-
     @Test
-    public void testAddProductToCartFromProductPage() {
-        login();
-        inventoryPage = new InventoryPage(bot);
-        bot.click(By.id("item_4_title_link")); // Navigate to Backpack
-        productPage = new ProductPage(bot);
-        productPage.addToCart();
-        Assert.assertEquals(productPage.getCartBadgeCount(), "1", "Cart should have 1 item");
+    public void viewProductDetails() {
+        ProductPage productPage = new ProductPage(bot);
+        LoginPage loginPage = new LoginPage(bot);
+        loginPage.navigateToandLoginWithValidCredentials();
+        productPage.clickonBackpackProductTitle();
+        Assert.assertTrue(productPage.verifyUserRedirecttoBackPackProductPage());
+        Assert.assertTrue(productPage.verifyBackpackProductImageDisplayed());
+        Assert.assertTrue(productPage.verifyProductName());
+        Assert.assertTrue(productPage.verifyBackpackDescDisplayed());
+        Assert.assertTrue(productPage.verifyBackpackPriceDisplayed());
+        Assert.assertTrue(productPage.verifyAddtoCartButtonDisplayed());
     }
 
-//    @Test
-//    public void testRemoveProductFromCartFromProductPage() {
-//        login();
-//        inventoryPage = new InventoryPage(bot);
-//        bot.click(By.id("item_4_title_link")); // Navigate to Backpack
-//        productPage = new ProductPage(bot);
-//        productPage.addToCart();
-//        Assert.assertEquals(productPage.getCartBadgeCount(), "1", "Cart should have 1 item");
-//        productPage.removeFromCart();
-//        Assert.assertEquals(productPage.getCartBadgeCount(), "0", "Cart should be empty");
-//    }
+    @Test
+    public void addProducttoCartfromDetailsPage() {
+        ProductPage productPage = new ProductPage(bot);
+        LoginPage loginPage = new LoginPage(bot);
+        loginPage.navigateToandLoginWithValidCredentials();
+        productPage.navigatetoBikeLightProductPage();
+        productPage.clickonBikeLightAddtoCartButton();
+        Assert.assertTrue(productPage.verifyButtonTextChangestoRemove());
+        Assert.assertTrue(productPage.verifyCartBadgeDisplays1());
+        productPage.clickBacktoProductsButton();
+        Assert.assertTrue(productPage.verifyUserReturnstoInventoryPage());
+    }
 
     @Test
-    public void testBackToProducts() {
-        login();
-        inventoryPage = new InventoryPage(bot);
-        bot.click(By.id("item_4_title_link")); // Navigate to Backpack
-        productPage = new ProductPage(bot);
-        productPage.backToProducts();
-        Assert.assertTrue(inventoryPage.isInventoryPageVisible(), "Should return to Inventory page");
+    public void navigateBacktoInventoryfromProductPage() {
+        ProductPage productPage = new ProductPage(bot);
+        LoginPage loginPage = new LoginPage(bot);
+        InventoryPage inventoryPage = new InventoryPage(bot);
+        loginPage.navigateToandLoginWithValidCredentials();
+        productPage.navigatetoBikeLightProductPage();
+        productPage.verifyBikeLightpageisdisplayed();
+        productPage.clickBacktoProductsButton();
+        Assert.assertEquals(inventoryPage.countTotalNumberOfProductsDisplayed(), 6);
+
+
     }
 }
-
-//    @Test
-//    public void testProductDetails() {
-//        login();
-//        inventoryPage = new InventoryPage(bot);
-//        bot.click(By.id("item_4_title_link")); // Navigate to Backpack
-//        productPage = new ProductPage(bot);
-//        Assert.assertNotNull(productPage.getProductName(), "Product name should be present");
-//        Assert.assertNotNull(productPage.getProductPrice(), "Product price should be present");
-//        Assert.assertNotNull(productPage.getProductDescription(), "Product description should be present");
-//    }
-//}

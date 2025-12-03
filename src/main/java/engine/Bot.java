@@ -93,8 +93,9 @@ public class Bot {
         driver.quit();
         System.out.println("Bot quit and driver closed.");
     }
-    public WebDriver getDriver() {
-        return driver;
+
+    public int countItems(By locator) {
+        return driver.findElements(locator).size();
     }
-    }
+}
 
