@@ -16,7 +16,7 @@ import java.util.Map;
 
 
 public class Bot {
-    WebDriver driver;
+    public WebDriver driver;
     Wait<WebDriver> wait;
 
     public Bot() {
