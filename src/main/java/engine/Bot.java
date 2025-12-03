@@ -93,4 +93,8 @@ public class Bot {
         driver.quit();
         System.out.println("Bot quit and driver closed.");
     }
-}
+    public WebDriver getDriver() {
+        return driver;
+    }
+    }
+

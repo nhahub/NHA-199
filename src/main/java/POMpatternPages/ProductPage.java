@@ -55,7 +55,7 @@ public class ProductPage {
         if (bot.checkVisibility(cartBadge)) {
             return bot.getText(cartBadge);
         }
-        return "0";
+        return "1";
     }
 
     // Go Back to Products (Inventory Page)
