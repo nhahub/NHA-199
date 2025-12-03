@@ -57,3 +57,4 @@ public class InventoryPageTest extends TestBaseAbstract {
 
     }
 }
+//Dua

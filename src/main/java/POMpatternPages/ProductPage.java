@@ -84,3 +84,4 @@ public class ProductPage {
         return productBot.getText(bikeLightPageTitle).contains("Bike Light");
     }
 }
+//Dua
