@@ -46,3 +46,4 @@ public class InventoryPageTest extends TestBaseAbstract {
 
     }
 }
+// fix

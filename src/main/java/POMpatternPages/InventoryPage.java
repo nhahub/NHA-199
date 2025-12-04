@@ -62,3 +62,4 @@ public class InventoryPage {
         return inventoryBot.getText(backPackAddtoCartButtonLocator).contains("Add to cart");
     }
 }
+// fix

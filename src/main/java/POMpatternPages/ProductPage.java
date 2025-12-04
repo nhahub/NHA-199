@@ -37,22 +37,27 @@ public class ProductPage {
     }
 
     public boolean verifyBackpackProductImageDisplayed() {
+
         return productBot.checkVisibility(backPackImageLocator);
     }
 
     public boolean verifyProductName() {
+
         return productBot.getText(backPackNameLocator).contains("Labs Backpack");
     }
 
     public boolean verifyBackpackDescDisplayed() {
+
         return productBot.checkVisibility(backPackDesLocator);
     }
 
     public boolean verifyBackpackPriceDisplayed() {
+
         return productBot.checkVisibility(backPackPriceLocator);
     }
 
     public boolean verifyAddtoCartButtonDisplayed() {
+
         return productBot.checkVisibility(backPackAddtoCartButtonLocator);
     }
 
@@ -84,3 +89,4 @@ public class ProductPage {
         return productBot.getText(bikeLightPageTitle).contains("Bike Light");
     }
 }
+// fix

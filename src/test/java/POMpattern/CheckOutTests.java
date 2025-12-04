@@ -58,5 +58,8 @@ public class CheckOutTests extends TestBaseAbstract  {
         // Click cancel and verify we are back on cart page
         checkout.clickCancel();
         Assert.assertTrue(cart.checkCartPAgeLanding(), "User was not redirected back to the cart page after cancelling checkout");
+        System.out.println("cancelCheckoutReturnsToCart test completed successfully.");
+
     }
 }
+// fix conflicts
