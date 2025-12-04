@@ -1,8 +1,6 @@
 package POMpatternPages;
-
 import engine.Bot;
 import org.openqa.selenium.By;
-
 
 public class InventoryPage {
     Bot inventoryBot;
@@ -64,4 +62,3 @@ public class InventoryPage {
         return inventoryBot.getText(backPackAddtoCartButtonLocator).contains("Add to cart");
     }
 }
-//Dua
