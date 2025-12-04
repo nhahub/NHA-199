@@ -18,6 +18,14 @@ It follows the Page Object Model (POM) pattern to keep tests readable and mainta
   - `engine` — Bot used by page objects
 - `src/test/java` — test classes (test cases)
 
+## Automated pages
+| Page | Description | Contact |
+| --- | --- | --- |
+| `LoginPage` | Handles user authentication flows (login, logout, validation) | `Farida El Amir Mohammed` |
+| `ProductPage` | Product listing, details and add-to-cart actions | `Ahmed Azzam Mohamed` |
+| `CartPage` | Cart interactions and item management | `Doaa Mahmoud Mohamed ` |
+| `CheckoutPage` | Checkout flow and payment form validations | `Ahmed Gomaa Abu-Madawy` |
+
 ## How it works (simple)
 1. Page objects represent pages and UI elements.
 2. `engine.Bot` (a wrapper around WebDriver) provides helper methods: click, getText, checkVisibility, etc.
@@ -32,14 +40,6 @@ It follows the Page Object Model (POM) pattern to keep tests readable and mainta
 - From IntelliJ IDEA:
   - Open the project, import Maven project, run test classes or test suite directly.
 
-## Common commands
-- Clean and run tests: `mvn clean test`
-- Run a single test class: configure a run configuration in IntelliJ or use Maven Surefire parameters.
-
-## Notes and tips
-- Keep browser driver version compatible with browser version.
-- Use explicit waits in `engine.Bot` to avoid flaky tests.
-- Keep page objects focused: locators + actions + verifications.
 
 ## Troubleshooting
 - If tests fail to start the browser Check logs printed by tests or the `engine.Bot` for more details.
