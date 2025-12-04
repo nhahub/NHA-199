@@ -72,8 +72,7 @@ public class LoginPage {
     }
 
     public String getCurrentUrl(){
-        loginBot.currentURL();
-        return getCurrentUrl();
+        return loginBot.currentURL();
     }
 
     public String getPlaceholder(By locator){
