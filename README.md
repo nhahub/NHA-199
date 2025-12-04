@@ -2,7 +2,7 @@
 
 ## Overview
 This project is a graduation automation project that uses Java, Maven and Selenium WebDriver.  
-It follows the Page Object Model (POM) pattern to keep tests readable and maintainable. The project automates UI interactions (clicks, checks, navigation) for a demo E-commerse web application.
+It follows the Page Object Model (POM) pattern to keep tests readable and maintainable. The project automates UI interactions (clicks, checks, navigation) for a demo E-commerce web application.
 
 ## Tech stack
 - Java (Microsoft open jdk 21.0.9)
