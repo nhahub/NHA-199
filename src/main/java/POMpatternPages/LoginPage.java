@@ -2,17 +2,20 @@ package POMpatternPages;
 import engine.Bot;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
     //Locators and variable
 
-    By usernameFieldLocator = By.xpath("//input[@placeholder='Username']");
-    By passwordFieldLocator = By.xpath("//input[@placeholder='Password']");
-    By loginButtonLocator =By.xpath("//input[@type='submit']");
-    By logoText = By.xpath("//div[@class='login_logo']");
-    By errorMessageLocator = By.xpath("//h3[@data-test='error']");
-    By menuLocator = By.xpath("//button[@id='react-burger-menu-btn']");
-    By logoutLocator = By.xpath("//a[@id='logout_sidebar_link']");
+    public static By usernameFieldLocator = By.xpath("//input[@placeholder='Username']");
+    public static By passwordFieldLocator = By.xpath("//input[@placeholder='Password']");
+    public static By loginButtonLocator =By.xpath("//input[@type='submit']");
+    public static By logoText = By.xpath("//div[@class='login_logo']");
+    public static By errorMessageLocator = By.xpath("//h3[@data-test='error']");
+    public static By menuLocator = By.xpath("//button[@id='react-burger-menu-btn']");
+    public static By logoutLocator = By.xpath("//a[@id='logout_sidebar_link']");
     public static String loginPageURL ="https://www.saucedemo.com/";
     public static String validUserName = "standard_user";
     public static String validPassword = "secret_sauce";
@@ -24,6 +27,7 @@ public class LoginPage {
     public static String lockedPassword ="secret_sauce";
     public static String expectedLockedErrorMessage ="Epic sadface: Sorry, this user has been locked out.";
     public static String homePageURL ="https://www.saucedemo.com/inventory.html";
+    //public static String CurrentUrl;
 
     Bot loginBot;
 
@@ -36,10 +40,12 @@ public class LoginPage {
         loginBot.navigateTo(loginPageURL);
     }
     public void enterUserName(String username){
+        loginBot.checkItemRemoved(usernameFieldLocator);
         loginBot.type(usernameFieldLocator,username);
     }
 
     public void enterPassword(String password){
+        loginBot.checkItemRemoved(usernameFieldLocator);
         loginBot.type(passwordFieldLocator,password);
     }
 
@@ -57,6 +63,21 @@ public class LoginPage {
     public void logoutSuccessfully(){
         loginBot.click(menuLocator);
         loginBot.click(logoutLocator);
+    }
+
+    public LoginPage checkPlaceholder(By locator , String Username){
+      String actualPlaceholder = loginBot.getAttribute(locator,"placeholder");
+      System.out.println("Placeholder is"+" "+actualPlaceholder);
+              return  this;
+    }
+
+    public String getCurrentUrl(){
+        loginBot.currentURL();
+        return getCurrentUrl();
+    }
+
+    public String getPlaceholder(By locator){
+        return  loginBot.getAttribute(locator,"placeholder");
     }
 
     // New method to perform login with given credentials

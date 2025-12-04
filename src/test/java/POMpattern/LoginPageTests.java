@@ -1,7 +1,11 @@
 package POMpattern;
 import POMpatternPages.LoginPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import javax.swing.text.html.Option;
 
 import static POMpatternPages.LoginPage.*;
 
@@ -13,12 +17,14 @@ public class LoginPageTests extends TestBaseAbstract{
         loginPage.navigateToLoginPage();
         String actualHeaderText = loginPage.verifyLogo();
         Assert.assertEquals(actualHeaderText,expectedHeaderText);
+        loginPage.checkPlaceholder(usernameFieldLocator,"placeholder");
+        loginPage.checkPlaceholder(passwordFieldLocator,"placeholder");
+        String actualPlaceholder = loginPage.getPlaceholder(usernameFieldLocator);
+        Assert.assertEquals(actualPlaceholder,"Username");
         loginPage.enterUserName(validUserName);
         loginPage.enterPassword(validPassword);
         loginPage.clickOnLoginButton();
         Assert.assertNotEquals(loginPageURL,homePageURL);
-        loginPage.logoutSuccessfully();
-
     }
     @Test
     public void  unsuccessfulLogin() {
@@ -44,6 +50,17 @@ public class LoginPageTests extends TestBaseAbstract{
         loginPage.clickOnLoginButton();
         String actualErrorMesssage = loginPage.ErrorMsgText();
         Assert.assertEquals(actualErrorMesssage,expectedLockedErrorMessage);
+    }
+    @Test
+    public void logoutRedirectsToLoginPageWithClearedFields (){
+        LoginPage loginPage = new LoginPage(bot);
+        loginPage.navigateToLoginPage();
+        loginPage.enterUserName(validUserName);
+        loginPage.enterPassword(validPassword);
+        loginPage.clickOnLoginButton();
+        loginPage.logoutSuccessfully();
+        String CurrentUrl= loginPage.getCurrentUrl();
+        Assert.assertEquals(CurrentUrl,"https://www.saucedemo.com/");
     }
 
 }
