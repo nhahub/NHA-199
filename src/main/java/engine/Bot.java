@@ -93,6 +93,11 @@ public class Bot {
         return wait.until(d -> !d.findElements(locator).isEmpty());
     }
 
+    public String getAttribute(By locator , String attributeName){
+        return driver.findElement(locator).getAttribute(attributeName);
+    }
+
+
     public void quit() {
         driver.quit();
         System.out.println("Bot quit and driver closed.");
