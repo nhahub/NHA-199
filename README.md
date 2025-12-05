@@ -44,6 +44,9 @@ It follows the Page Object Model (POM) pattern to keep tests readable and mainta
 ## Troubleshooting
 - If tests fail to start the browser Check logs printed by tests or the `engine.Bot` for more details.
 
+## Presntaion link 
+https://docs.google.com/presentation/d/1-ps5HqYVMajZr3oPZE1XH_4V4tHbWn-Q/edit?usp=drive_link&ouid=115988484655479785651&rtpof=true&sd=true
+
 ## Authors
 - Ahmed Gomaa Abu-Madawy
 - Ahmed Azzam Mohamed
