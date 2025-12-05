@@ -1,10 +1,6 @@
 package POMpatternPages;
 import engine.Bot;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
     //Locators and variable
@@ -77,6 +73,18 @@ public class LoginPage {
 
     public String getPlaceholder(By locator){
         return  loginBot.getAttribute(locator,"placeholder");
+    }
+
+    public String getUserNameFieldText(By locator){
+        String textField = loginBot.driver.findElement(usernameFieldLocator).getAttribute("Value");
+        System.out.println("Username"+" "+ textField);
+        return textField;
+    }
+
+    public String getPasswordFieldText(By locator){
+        String textField = loginBot.driver.findElement(passwordFieldLocator).getAttribute("Value");
+        System.out.println("Password"+" "+ textField);
+        return textField;
     }
 
     // New method to perform login with given credentials

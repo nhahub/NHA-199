@@ -1,11 +1,7 @@
 package POMpattern;
 import POMpatternPages.LoginPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import javax.swing.text.html.Option;
 
 import static POMpatternPages.LoginPage.*;
 
@@ -23,6 +19,8 @@ public class LoginPageTests extends TestBaseAbstract{
         Assert.assertEquals(actualPlaceholder,"Username");
         loginPage.enterUserName(validUserName);
         loginPage.enterPassword(validPassword);
+        loginPage.getUserNameFieldText(usernameFieldLocator);
+        loginPage.getPasswordFieldText(passwordFieldLocator);
         loginPage.clickOnLoginButton();
         Assert.assertNotEquals(loginPageURL,homePageURL);
     }
@@ -34,6 +32,8 @@ public class LoginPageTests extends TestBaseAbstract{
         Assert.assertEquals(actualHeaderText,expectedHeaderText);
         loginPage.enterUserName(invalidUserName);
         loginPage.enterPassword(invalidPassword);
+        loginPage.getUserNameFieldText(usernameFieldLocator);
+        loginPage.getPasswordFieldText(passwordFieldLocator);
         loginPage.clickOnLoginButton();
         String actualErrorMessage = loginPage.ErrorMsgText();
         Assert.assertEquals(actualErrorMessage,expectedErrorMessage);
@@ -47,6 +47,8 @@ public class LoginPageTests extends TestBaseAbstract{
         Assert.assertEquals(actualHeaderText,expectedHeaderText);
         loginPage.enterUserName(lockedUserName);
         loginPage.enterPassword(lockedPassword);
+        loginPage.getUserNameFieldText(usernameFieldLocator);
+        loginPage.getPasswordFieldText(passwordFieldLocator);
         loginPage.clickOnLoginButton();
         String actualErrorMesssage = loginPage.ErrorMsgText();
         Assert.assertEquals(actualErrorMesssage,expectedLockedErrorMessage);
@@ -59,8 +61,11 @@ public class LoginPageTests extends TestBaseAbstract{
         loginPage.enterPassword(validPassword);
         loginPage.clickOnLoginButton();
         loginPage.logoutSuccessfully();
+        loginPage.getUserNameFieldText(usernameFieldLocator);
+        loginPage.getPasswordFieldText(passwordFieldLocator);
         String CurrentUrl= loginPage.getCurrentUrl();
         Assert.assertEquals(CurrentUrl,"https://www.saucedemo.com/");
+
     }
 
 }
