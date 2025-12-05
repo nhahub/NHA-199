@@ -23,10 +23,9 @@ public class LoginPage {
     public static String lockedPassword ="secret_sauce";
     public static String expectedLockedErrorMessage ="Epic sadface: Sorry, this user has been locked out.";
     public static String homePageURL ="https://www.saucedemo.com/inventory.html";
-    //public static String CurrentUrl;
+
 
     Bot loginBot;
-
     public LoginPage(Bot bot){
        this.loginBot = bot;
     }

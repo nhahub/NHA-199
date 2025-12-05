@@ -64,6 +64,7 @@ public class LoginPageTests extends TestBaseAbstract{
         loginPage.getUserNameFieldText(usernameFieldLocator);
         loginPage.getPasswordFieldText(passwordFieldLocator);
         String CurrentUrl= loginPage.getCurrentUrl();
+        // assertion
         Assert.assertEquals(CurrentUrl,"https://www.saucedemo.com/");
 
     }
